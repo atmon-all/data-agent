@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.atmon.data.agent.grpc";
+option go_package = "github.com/atmom/datagent/grpc";
+
+package agent;
+
+// Services of atmon data agent.
+service Datagent {
+    // Get data from data agent.
+    rpc GetData (GetDataRequest) returns (GetDataResponse) {}
+}
+
+// Get data request.
+message GetDataRequest {
+    // Data configuration key.
+    string key = 1;
+
+    // Data configuration version.
+    string version = 2;
+
+    // Data source.
+    string datasource = 3;
+}
+
+// Get data response.
+message GetDataResponse {
+    // Responsed code from data agent.
+    int32 code = 1;
+
+    // Responsed message from data agent.
+    string message = 2;
+
+    // Responsed data from data agent.
+    string data = 3;
+}
